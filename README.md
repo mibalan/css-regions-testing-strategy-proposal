@@ -1,4 +1,6 @@
-css-regions-testing-strategy-proposal
+CSS Regions testing strategy proposal
 =====================================
 
-Proposal for a public (spec) testing strategy for CSS Regions (see http://www.w3.org/TR/css3-regions/ for the actual spec)
+Proposal for a public (spec) testing strategy for [CSS Regions](http://www.w3.org/TR/css3-regions/).
+
+This document was created using [ReSpec](https://github.com/darobin/respec).
