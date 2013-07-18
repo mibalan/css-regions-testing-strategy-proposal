@@ -15,7 +15,7 @@
           specStatus:           "unofficial",
           
           // the specification's short name, as in http://www.w3.org/TR/short-name/
-          shortName:            "xxx-xxx",
+          /* shortName:            "xxx-xxx", */
 
           // if your specification has a subtitle that goes below the main
           // formal title, define it here
@@ -34,14 +34,14 @@
           // previousMaturity:  "WD",
 
           // if there a publicly available Editor's Draft, this is the link
-          edDraftURI:           "",
+          /* edDraftURI:           "", */
 
           // if this is a LCWD, uncomment and set the end of its review period
           // lcEnd: "2009-08-05",
 
           // if you want to have extra CSS, append them to this list
           // it is recommended that the respec.css stylesheet be kept
-          extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"],
+          /* extraCSS:             ["http://dev.w3.org/2009/dap/ReSpec.js/css/respec.css"], */
 
           // editors, add as many as you like
           // only "name" is required
@@ -49,6 +49,8 @@
               { name: "Mihai Balan", mailto: "mibalan@adobe.com",
                 company: "Adobe Systems, Inc.", companyURL: "http://www.adobe.com/" },
           ],
+
+          testSuiteURI: "http://test.csswg.org/suites/css3-regions/nightly-unstable/",
 
           // authors, add as many as you like. 
           // This is optional, uncomment if you have authors as well as editors.
@@ -60,45 +62,84 @@
           //],
           
           // name of the WG
-          wg:           "In Charge Of This Document Working Group",
+          /* wg:           "In Charge Of This Document Working Group", */
           
           // URI of the public WG page
-          wgURI:        "http://example.org/really-cool-wg",
+          /* wgURI:        "http://example.org/really-cool-wg", */
           
           // name (without the @w3c.org) of the public mailing to which comments are due
-          wgPublicList: "spec-writers-anonymous",
+          /* wgPublicList: "spec-writers-anonymous", */
           
           // URI of the patent status for this WG, for Rec-track documents
           // !!!! IMPORTANT !!!!
           // This is important for Rec-track documents, do not copy a patent URI from a random
           // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
           // Team Contact.
-          wgPatentURI:  "",
+          /* wgPatentURI:  "", */
       };
     </script>
+    <style>
+    a.bibref,
+    #references dt {
+      text-transform: uppercase;
+    }
+    </style>
   </head>
   <body>
     <section id='abstract'>
-      This document is intended to be used as a guideline for the testing
-      activities related to the CSS Regions spec [[!css3-regions]]. Its main goal is to provide an overview of the general testing areas, possible
-      caveats and testing aspects not immediately apparent from the spec.
-      Also, it provides a means of tracking the progress of the CSS Regions spec
-      testing.
-      This document is not meant to replace the spec in determining the 
-      normative and non-normative assertions to be tested, but rather complement
-      it.
+      <p>
+        This document is intended to be used as a guideline for the testing
+        activities related to the CSS Regions spec [[!css3-regions]]. Its main
+        goal is to provide an overview of the general testing areas, possible
+        caveats and testing aspects not immediately apparent from the spec.
+        Also, it provides a means of tracking the progress of the CSS Regions
+        spec testing.
+      </p>
+      <p>
+        This document is not meant to replace the spec in determining the 
+        normative and non-normative assertions to be tested, but rather
+        complement it.
+      </p>
     </section>
     
     <section>
       <h2>Introduction</h2>
       <p>
-        - specs are getting more complex, testing efforts need coordination, esp with things like TtWF, where people less familiar with the whole W3C status/policy/relationships want to contribute
-        - complement the existing test suite
-        - this is what should be done, at a minimum, the test suite is what has already been done
-        - general approach to testing regions, the goals for this testing, testing areas (normative & cross referenced)
-        - notable people to refer to in regards to testing css regions (me, Alan, Rebecca, others?)
-        - other supporting documents (??)
-        - test progress tracking - based on existing W3C tests and 
+        As CSS moved away from the monolithical development of CSS 2.1 to the 
+        modular development of CSS 3, the number of proposed new features and
+        the complexity of the layout landscape have increased dramatically.
+        While this directly translates to increased flexibility and agility in
+        adopting and implementing new CSS features, it also increases the
+        complexity of testing CSS features and the need for coordinating the
+        testing efforts. Also, the need for testing coordination increases as
+        crowd-sourcing efforts like
+        <a href="http://testthewebforward.org/" target="_blank">Test the Web
+        Forward</a> present people less familiar with the processes and policies
+        of the W3C with the opportunity to contribute new tests.
+      </p>
+      <p>
+        Except when defining new behaviors or redefining old behaviors, the
+        implicit assumption for new CSS modules is that they play nicely with
+        other modules or properties defined in CSS 2.1 [[CSS21]]. As CSS Regions
+        is a spec that touches many aspects of layout, styling and CSSOM, it's
+        not unreasonable to want to test the spec against these implicit
+        assumptions, too.
+      </p>
+      <p>
+        The main goal of this testing strategy document is to complement the
+        existing test suite &ndash; the test suite contains the existing tests,
+        while the testing strategy provides an overview of what should be done,
+        both normatively defined in the CSS Regions spec and inferred from other
+        specs or aspects of the current spec. It also lists a desired general
+        approach to testing CSS Regions and the priorities in doing so.
+      </p>
+      <p>
+        Lastly, this document contains a tracker for the progress of the testing
+        effort for CSS Regions. While the most up-to-date reference remains the
+        actual test suite, the test progress tracker will be kept as up-to-date
+        as possible, in order to accurately present the areas that still need
+        testing. Note that this only refers to W3C tests and might not include
+        testing done by implementors (unless it's been upstreamed to the W3C).
       </p>
     </section>
     <section>
@@ -151,17 +192,27 @@
       <h2>Testing areas</h2>
       <p>List of the testing areas, implicit and explicit.</p>
       <section>
-        <h3>Another one</h3>
-        <p>This text here.</p>
+        <h3>Explicit testing areas</h3>
+        <p>These are testing areas normatively defined by the spec. They cover things explicitly or implicitly defined in the CSS Regions spec.</p>
+        <p></p>
+      </section>
+      <section>
+        <h3>Implicit testing areas</h3>
+        <p>These are testing areas either normatively defined in other specs
+          that explicitly refer to the CSS Regions spec (e.g. [[!css3-break]])
+          or simply not explicitly defined, but implied by various aspects of
+          the spec (e.g. processing model, CSS 2.1 compliance, etc.).</p>
+        <p></p>
       </section>
     </section>
     <section>
       <h2>People and responsibilities</h2>
       <p>
+        Below is a list of people you should reach out to if you have any
+        questions related to this document or testing CSS Regions in general:
         <ul>
-          <li>Mihai Balan - test coordinator for CSS Regions</li>
-          <li>Alan Stearns - editor for CSS Regions spec</li>
-          <li>Elika Etemad - editor for CSS Fragmentation spec</li>
+          <li>Mihai Balan &ndash; test coordinator for CSS Regions</li>
+          <li>Alan Stearns &ndash; editor for CSS Regions spec</li>
         </ul>
       </p>
     </section>
