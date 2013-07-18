@@ -8,7 +8,6 @@
       For the three scripts below, if your spec resides on dev.w3 you can check them
       out in the same tree and use relative links so that they'll work offline,
      -->
-    <!-- <script src='http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js' class='remove'></script> -->
     <script src='http://www.w3.org/Tools/respec/respec-w3c-common' class='remove' async></script>
     <script class='remove'>
       var respecConfig = {
@@ -35,7 +34,7 @@
           // previousMaturity:  "WD",
 
           // if there a publicly available Editor's Draft, this is the link
-          edDraftURI:           "http://dev.w3.org/2009/dap/ReSpec.js/documentation.html",
+          edDraftURI:           "",
 
           // if this is a LCWD, uncomment and set the end of its review period
           // lcEnd: "2009-08-05",
@@ -80,34 +79,98 @@
   </head>
   <body>
     <section id='abstract'>
-      This is the abstract for your specification.
+      This document is intended to be used as a guideline for the testing
+      activities related to the CSS Regions spec [[!css3-regions]]. Its main goal is to provide an overview of the general testing areas, possible
+      caveats and testing aspects not immediately apparent from the spec.
+      Also, it provides a means of tracking the progress of the CSS Regions spec
+      testing.
+      This document is not meant to replace the spec in determining the 
+      normative and non-normative assertions to be tested, but rather complement
+      it.
     </section>
     
     <section>
-      <h2>Approach</h2>
+      <h2>Introduction</h2>
       <p>
-        Some text here.
+        - specs are getting more complex, testing efforts need coordination, esp with things like TtWF, where people less familiar with the whole W3C status/policy/relationships want to contribute
+        - complement the existing test suite
+        - this is what should be done, at a minimum, the test suite is what has already been done
+        - general approach to testing regions, the goals for this testing, testing areas (normative & cross referenced)
+        - notable people to refer to in regards to testing css regions (me, Alan, Rebecca, others?)
+        - other supporting documents (??)
+        - test progress tracking - based on existing W3C tests and 
       </p>
     </section>
     <section>
-      <h2>Risks and mitigation</h2>
-      <p>Something about risks and mitigation.</p>
+      <h2>Approach</h2>
+      <p>
+        - testing the spec cannot be entirely separated from testing an implementation
+        - it's a complex spec, so multiple passes will be needed - each going deeper in some aspects
+        - general points to keep in mind
+          - at each pass, get most bang for the buck
+          - try to be as automation friendly as possible
+            - ref-tests/testharness.js tests
+            - keep manual tests to a minimum
+            - where manual tests are absolutely required, try to design them with possible future automation in mind; there are efforts to enable testing with WebDriver [[webdriver]]
+      </p>
+    </section>
+    <section>
+      <h2>Goals</h2>
+      <p>
+        - be as automation-friendly as possible
+          - side-goal is to play nicely with implementors automation tools/suites, so that they can contribute as much as possible to the W3C testing effort
+          - see above about ref-tests/testharness.js over manual tests
+        - provide guidance on areas' testing needs (what needs how much testing, caveats, etc.)
+        - enable contributions from the community (other implementors, non-affiliated ppl)
+        - "layered" testing, spec tests should be usable to get an idea of the level of support in a certain implementation
+      </p>
+      <section>
+        <h3>Risks and mitigation</h3>
+        <section>
+          <h4>Risks</h4>
+          <p>
+            - implicit interactions with a lot of other spec
+              - some are in CSSWG (flexbox, grid, etc.)
+              - some are in "fluid" specs (e.h. HTML5) or non-CSSWG (ShadowDOM)
+            - (supposed) big number of tests needed
+              - TODO ask Rebecca about spec coverage reports
+          </p>
+        </section>
+        <section>
+          <h4>Mitigation</h4>
+          <p>
+            - for mature specs, try to make the two play nice together, for less mature specs, try to be future proof, raise concerns, but don't try to cater for everything (must draw a line)
+            - see goal about test coordination and enabling easy test contribution
+          </p>
+        </section>
+        <p>
+        </p>
+      </section>
     </section>
     <section>
       <h2>Testing areas</h2>
       <p>List of the testing areas, implicit and explicit.</p>
+      <section>
+        <h3>Another one</h3>
+        <p>This text here.</p>
+      </section>
     </section>
     <section>
       <h2>People and responsibilities</h2>
-      <p>This might not necessarily be needed here.</p>
-    </section>
-    <section>
-      <h2>Supporting documents</h2>
-      <p>List of documents supporting this decision.</p>
+      <p>
+        <ul>
+          <li>Mihai Balan - test coordinator for CSS Regions</li>
+          <li>Alan Stearns - editor for CSS Regions spec</li>
+          <li>Elika Etemad - editor for CSS Fragmentation spec</li>
+        </ul>
+      </p>
     </section>
     <section>
       <h2>Test progress tracking</h2>
-      <p>More details here on the status of testing for this spec.</p>
+      <p>
+        Actual progress tracking to be done here or linked, if done in an 
+        external location.
+      </p>
     </section>
   </body>
 </html>
