@@ -105,7 +105,7 @@
     <section>
       <h2>Introduction</h2>
       <p>
-        As CSS moved away from the monolithical development of CSS 2.1 to the 
+        As CSS moved away from the monolithic development of CSS 2.1 to the 
         modular development of CSS 3, the number of proposed new features and
         the complexity of the layout landscape have increased dramatically.
         While this directly translates to increased flexibility and agility in
@@ -164,7 +164,7 @@
         <p>
           In terms of actual tests produced for the CSS Regions, the main goal
           is to ensure that most tests are automatable (i.e. they're either
-          ref-tests or use <code>testharness.js</code>). Even where manual tests
+          reftests or use <code>testharness.js</code>). Even where manual tests
           are absolutely necessary they should be written so that they can be
           easily automated &ndash; as there are on-going efforts to make
           WebDriver [[webdriver]] automated tests a first class citized in W3C
@@ -177,16 +177,13 @@
     </section>
     <section>
       <h2>Risks and mitigation</h2>
-      <div class="note">
-        I'm not 100% sure this section needs/should be present in such a 
-        document.
-      </div>
       <p>
         There are a number of risks associated with creating a high-quality
         test suite for CSS Regions. The most important ones are listed below.
       </p>
       <section>
-        <h3>Implicit interactions with a lot of other specs</h3>
+        <h3>Implicit interactions with a lot of other specs (and commonly accepted
+          browser behavior)</h3>
         <p>
           The CSS Region spec introduces a significant change in the way layout
           can be done and as a consequence, many of the assumptions that hold in
@@ -201,7 +198,9 @@
         <p>
           All the above factors increase the testing surface and the number of
           the possible cases that might need an explicitly specified behavior in
-          order ensure intuitive and not-unexpected results.
+          order to ensure intuitive and not-unexpected results as well as stable
+          interaction with widely used browser features (that might not be <em>yet</em>
+          so strictly specified).
         </p>
         <p>
           In terms of specifying the expected behavior, the current approach is
@@ -215,9 +214,9 @@
       <section>
         <h3>Big number of tests required</h3>
         <div class="note">
-          It would be awesome to have an estimate of the number of tests needed.
-          I remember seeing something about a tool that would parse a spec and
-          produce such an estimation. Anyone has any specifics?
+          Add here the estimation of tests required produced by
+          <a href="https://github.com/w3c/web-platform-tests/tree/master/tools/coverage" target="_blank">W3C test coverage</a>
+          tool. If possible, provide a better informed guess on the number of tests.
         </div>
         <p>
           Given the complexity of the spec, a big number of tests will need to
@@ -279,6 +278,7 @@
                   details</li>
               </ul>
             </li>
+            <li>Nested named flows and cycle detection</li>
             <li>Multi-column regions</li>
             <li>Regions' pseudo-elements</li>
             <li>Region styling</li>
@@ -333,11 +333,14 @@
           Below is the list of implicit testing areas:
           <ol>
             <li>
-              CSS Regions and new layout modules:
+              CSS Regions and layout modules:
               <ul>
+                <li>Floats</li>
+                <li>Positioned elements</li>
                 <li>CSS Flexbox [[css3-flexbox]]</li>
                 <li>CSS Multicolumn [[css3-multicol]] content in named flows</li>
                 <li>CSS Shapes [[css-shapes-1]]</li>
+                <li>CSS Grid Layout [[css3-grid-layout]]</li>
               </ul>
             </li>
             <li>
@@ -369,9 +372,9 @@
               Dynamic content &ndash; dynamically changing the named flows or
               the region chain
             </li>
-            <li>Positioned elements in named flows</li>
             <li>Writing modes</li>
-            <li>User input events (mouse, touch, keyboard)</li>
+            <li>User input events (e.g. mouse, touch, keyboard); this includes event propagation</li>
+            <li>User action pseudo-classes (e.g. <code>:active</code>, <code>:hover</code>)</li>
             <li>Transforms</li>
             <li>Transitions and animations</li>
             <li>
@@ -389,9 +392,6 @@
     </section>
     <section>
       <h2>People and responsibilities</h2>
-      <div class="note">
-        I'm not 100% sure this section should be present in the document.
-      </div>
       <p>
         Below is a list of people you should reach out to if you have any
         questions related to this document or testing CSS Regions in general:
